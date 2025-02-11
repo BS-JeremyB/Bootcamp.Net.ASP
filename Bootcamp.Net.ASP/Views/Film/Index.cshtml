@@ -1,17 +1,19 @@
-﻿@model Film;
+﻿@model List<Film>;
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Liste de films";
 }
 
-<h1>@Model.Titre (Année de sortie : @Model.AnneeSortie)</h1>
-<hr />
 
-<p>@Model.Genre</p>
-<p>@Model.Realisateur</p>
-<h2>Acteurs : </h2>
-<hr />
-<p>@Model.Acteurs</p>
+<h1>@ViewData["h1"]</h1>
+@foreach(Film film in @Model){
 
-
+    <div id="container">
+        <h3>@film.Titre (Année de sortie : @film.AnneeSortie)</h3>
+        <a class="btn btn-primary" asp-controller="Film" asp-action="Detail" asp-route-id="@film.Id">Detail</a>
+        <a class="btn btn-danger" asp-controller="Film" asp-action="Delete" asp-route-id="@film.Id">Supprimer</a>
+    </div>
+    <hr />
+}
