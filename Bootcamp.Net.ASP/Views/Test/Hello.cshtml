@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{ 
+    @model Dictionary<string, string>;
+    List<string> semaine = new List<string>
+    {
+        "Lundi",
+        "Mardi",
+        "Mercredi",
+        "Jeudi",
+        "Vendredi",
+        "Samedi",
+        "Dimanche"
+    };
+
+}
+<h1>@Model["message"]</h1>
+<ul>
+    @foreach(string jour in semaine)
+    {
+        <li>@jour</li>
+    }
+</ul>

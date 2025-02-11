@@ -1,0 +1,26 @@
+﻿@model Utilisateur
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string message = "Hello je suis ";
+
+}
+
+<h1>A propos de moi :</h1>
+
+<h2>@message @Model.Nom @Model.Prenom</h2>
+<p>
+    @Model.Description
+</p>
+@if(Model.Age > 18)
+{
+    <text>message</text>
+    <p>Model.Age</p>
+    <p>Vous êtes majeur</p>
+}
+else
+{
+    <p>Vous être mineur</p>
+}
+
