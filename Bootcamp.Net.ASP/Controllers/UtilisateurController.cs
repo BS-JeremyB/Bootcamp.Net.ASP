@@ -1,5 +1,6 @@
 ﻿using Bootcamp.Net.ASP.Data;
 using Bootcamp.Net.ASP.Models;
+using Bootcamp.Net.ASP.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bootcamp.Net.ASP.Controllers
@@ -19,14 +20,22 @@ namespace Bootcamp.Net.ASP.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Utilisateur utilisateur)
+        public IActionResult Index(CreateUtilisateurForm utilisateur)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            _dc.Add(utilisateur);
+            Utilisateur utilisateurAdd = new Utilisateur
+            {
+                Nom = utilisateur.Nom,
+                Prenom = utilisateur.Prenom,
+                Email = utilisateur.Email,
+                Password = utilisateur.Password,
+            };
+
+            _dc.Add(utilisateurAdd);
             _dc.SaveChanges();
             return RedirectToAction("Index", "Home");
         }

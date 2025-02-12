@@ -1,6 +1,7 @@
 ﻿using Bootcamp.Net.ASP.Data.Config;
 using Bootcamp.Net.ASP.Models;
 using Microsoft.EntityFrameworkCore;
+using Bootcamp.Net.ASP.Models.DTO;
 
 namespace Bootcamp.Net.ASP.Data
 {
@@ -23,6 +24,7 @@ namespace Bootcamp.Net.ASP.Data
             modelBuilder.ApplyConfiguration(new FilmConfig());
             modelBuilder.ApplyConfiguration(new FilmPersonneConfig());
         }
+        public DbSet<Bootcamp.Net.ASP.Models.DTO.UpdatePersonneForm> UpdatePersonneForm { get; set; } = default!;
 
     }
 }

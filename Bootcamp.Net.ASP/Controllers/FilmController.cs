@@ -1,6 +1,8 @@
 ﻿using Bootcamp.Net.ASP.Data;
 using Bootcamp.Net.ASP.Models;
+using Bootcamp.Net.ASP.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bootcamp.Net.ASP.Controllers
@@ -44,9 +46,58 @@ namespace Bootcamp.Net.ASP.Controllers
             _dc.RemoveRange(personnes);
             _dc.Remove(film);
 
-            
+
             _dc.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
+
+
+        public IActionResult Create()
+        {
+            ViewBag.Personnes = _dc.Personnes.Select(p => new SelectListItem { Value = p.Id.ToString(), Text = $"{p.Prenom} {p.Nom}" }).ToList();
+            //CreateFilmForm createFilm = new CreateFilmForm
+            //{
+            //    Realisateurs = _dc.Personnes.Select(p => new SelectListItem { Value = p.Id.ToString(), Text = $"{p.Prenom} {p.Nom}" }).ToList(),
+            //    Acteurs = _dc.Personnes.Select(p => new SelectListItem { Value = p.Id.ToString(), Text = $"{p.Prenom} {p.Nom}" }).ToList()
+            //};
+        
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Create(CreateFilmForm form)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(form);
+            }
+
+            Film filmAdd = new Film
+            {
+                Titre = form.Titre,
+                AnneeSortie = form.AnneeSortie,
+                Genre = form.Genre,
+                RealisateurId = form.RealisateurId,
+            };
+
+            _dc.Films.Add(filmAdd);
+            _dc.SaveChanges();
+
+            if(form.ActeursIds != null && form.ActeursIds.Count > 0)
+            {
+                var filmPersonnes = form.ActeursIds.Select(id => new FilmPersonne { FilmId = filmAdd.Id, PersonneId = id }).ToList();
+
+                _dc.FilmPersonnes.AddRange(filmPersonnes);
+                _dc.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+
+        }
+        
+
+
+
     }
 }

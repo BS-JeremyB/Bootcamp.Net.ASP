@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Bootcamp.Net.ASP.Models.Film>
+﻿@model IEnumerable<Bootcamp.Net.ASP.Models.Personne>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Titre)
+                @Html.DisplayNameFor(model => model.Nom)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AnneeSortie)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genre)
+                @Html.DisplayNameFor(model => model.Prenom)
             </th>
             <th></th>
         </tr>
@@ -28,13 +25,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Titre)
+                @Html.DisplayFor(modelItem => item.Nom)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AnneeSortie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
+                @Html.DisplayFor(modelItem => item.Prenom)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

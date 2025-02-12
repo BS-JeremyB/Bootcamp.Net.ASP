@@ -1,4 +1,5 @@
-﻿@model Utilisateur
+﻿@using Bootcamp.Net.ASP.Models.DTO
+@model CreateUtilisateurForm
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -33,6 +34,13 @@
                 <label asp-for="Password" class="control-label">Mot de passe :</label>
                 <input asp-for="Password" type="password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="PasswordConfirm" class="control-label">Vérifier Mot de passe :</label>
+                <input asp-for="PasswordConfirm" type="password" class="form-control" />
+                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
             </div>
 
 

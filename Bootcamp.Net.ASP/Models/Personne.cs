@@ -1,4 +1,7 @@
-﻿namespace Bootcamp.Net.ASP.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Bootcamp.Net.ASP.Models
 {
     public class Personne
     {
