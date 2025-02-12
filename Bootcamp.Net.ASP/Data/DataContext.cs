@@ -16,6 +16,8 @@ namespace Bootcamp.Net.ASP.Data
 
         public DbSet<FilmPersonne> FilmPersonnes { get; set; }
 
+        public DbSet<Utilisateur> utilisateurs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new FilmConfig());
